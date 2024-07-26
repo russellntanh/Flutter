@@ -1,3 +1,25 @@
+void main(List<String> args) {
+  String s = 'i am Russell';
+  int i = 40;
+  bool b = false;
+  double d = 9.5;
+
+  print(s); // output: s
+  print(i); // output: i
+  print(b); // output: b
+  print(d); // output: d
+
+  dynamic dyn = 'I am Tony';
+  dyn = 6;
+  dyn = true;
+  print(dyn); // output: true
+
+  var v = 'I am Rabbit'; // output: I am Rabbit
+  v = true; // output: error
+  print(v);
+}
+
+/*
 import 'package:flutter/material.dart';
 
 void main() {
@@ -123,3 +145,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/

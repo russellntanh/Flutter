@@ -1,4 +1,4 @@
-Part I : Environment Settings
+# Part I : Environment Settings
 1. Install Dart SDK	=> Done
    - C:/Program Files/dart
    - CMD -> dart --version
@@ -41,10 +41,10 @@ Press "flutter doctor" to check all below:
 7. Restart PC if it does not work
 
 ===============================================================
-Part II : Dart Fundamentals
-
-1. Khai bao bien co ban
-```
+# Part II : Dart Fundamentals
+## Unit 1 - Variable declaration basic
+### 1. Bien co ban trong Dart
+```dart
 String name = 'Russell';
 int age = 40;
 bool old = false;
@@ -56,8 +56,8 @@ print(old);		// output: false
 print (sum);	// output: 8.5
 ```
 
-2. Khai bao bien chap nhan moi kieu
-```
+### 2. Khai bao bien chap nhan moi kieu (dynamic)
+```dart
 dynamic all;
 print(all);    // output: null
 
@@ -66,8 +66,8 @@ all = 40;
 all = true;
 all = 8.5;
 ```
-3. Khai bao bien kieu Var
-```
+### 3. Khai bao bien kieu chap nhan moi kieu (var)
+```dart
 var varAll;
 varAll = 'Russell';
 varAll = 40;
@@ -82,13 +82,13 @@ dyn = 50;
 print(dyn); 	// output: 50
 ```
 - var : can't change type after firs time declaration.
-```
+```dart
 var v = 'Hello';
 v = 50; 		// output: error occurs
 ```
 
 ===============================================================
-Part III : Flutter
+# Part III : Flutter
 
 
 
