@@ -129,6 +129,84 @@ Note:
 - PREFER using const for constant-valued declarations.
 - Constant declarations are more hot-reload friendly and allow values to be used in other constant expressions.
 
+## Unit 3 - Operators
+### 1. Arithmetic operator
+Add, Substract, Multiply, Divide, Integer divide, Modulus
+```dart
+  int x = 6;
+  int y = 4;
+
+  print(x + y); // output: 10
+  print(x - y); // output: 2
+  print(x * y); // output: 24
+  print(x / y); // output: 1.5
+  print(x ~/ y); // output: 1
+  print(x % y); // output: 2
+
+```
+
+### 2. Comparison operator
+Equal, Not equal, Greater than, Less than, Greater than or Equal, Less than or Equal
+
+```dart
+  var x = 5;
+  var y = 6;
+  print(x == y); // output: false
+  print(x != y); // output: true
+  print(x < y); // output: true
+  print(x > y); // output: false
+  print(x <= y); // output: true
+  print(x >= y); // output: false
+```
+### 3. Logical operator
+And, Or, Not
+```dart
+  var x = true;
+  var y = false;
+
+  print(x & y); // And => output: false
+  print(x | y); // Or => output: true
+  print(!x); // Not => output: false
+```
+
+### 4. Assignment operator
+```dart
+  var x = 5.0;
+
+  print(x += 3); // output: 8
+  print(x -= 3); // output: 5
+  print(x++); // output: 6
+  print(x--); // output: 5
+  print(x /= 2); // output: 2.5
+  print(x ~/ 2); // output: 1
+  print(x *= 2); // output 5
+  print(8 % 5); // output: 3
+```
+
+### 5. Condition operator (if-else, for)
+```dart
+  var a = 9;
+
+  // cach 1:
+  if (a == 9) {
+    print('Phep toan dung');
+  } else {
+    print('Phep toan sai');
+  }
+
+  // cach 2:
+  a == 9 ? print('Phep toan dung') : print('Phep toan sai');
+  
+  // for loop
+  List<String> userName = ['Russell', 'Tony', 'Rabbit'];
+
+  for (int i = 0; i < userName.length; i++) {
+    userName[i] == 'Rabbit' ? userName[i] = 'Vi Anh' : userName[i];
+
+    print(userName[i]);
+  }
+```
+
 # Part III : Flutter
 
 
