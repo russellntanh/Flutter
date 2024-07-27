@@ -1,3 +1,27 @@
+void main() {
+  List<String> name = ['Russell', 'Tony', 'Rabbit'];
+
+  print(name); // output: [Russell, Tony, Rabbit]
+  print(name[2]); // output: Rabbit
+
+  Map<String, String> un_pw = {
+    '001': 'russell',
+    '002': 'tony',
+    '003': 'rabbit'
+  };
+
+  print(un_pw); // output: {001: russell, 002: tony, 003: rabbit}
+  print(un_pw['002']); // output: tony
+
+  const pi = 3.1415926535897932;
+  //PI = 3.1111111; // output: error
+  print(pi);
+
+  final MAX_VALUE = 255;
+  print(MAX_VALUE);
+}
+
+/*
 void main(List<String> args) {
   String s = 'i am Russell';
   int i = 40;
@@ -18,6 +42,7 @@ void main(List<String> args) {
   v = true; // output: error
   print(v);
 }
+*/
 
 /*
 import 'package:flutter/material.dart';

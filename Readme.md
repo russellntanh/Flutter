@@ -87,7 +87,48 @@ var v = 'Hello';
 v = 50; 		// output: error occurs
 ```
 
-===============================================================
+## Unit 2 - Collections (List, Map) and Const & Final
+### 1. List
+To store a certain data such as String, int, double, boolean
+```dart
+List<String> name = ['Russell', 'Tony', 'Rabbit'];
+List<int> money = [100, 200, 300, 400, 500];
+
+print(name);    // output: [Russell, Tony, Rabbit]
+print(name[2]); // output: Rabbit
+
+```
+
+### 2. Map
+To store a pair of key and value data
+```dart
+Map<String, String> un_pw = {
+    '001': 'russell',
+    '002': 'tony',
+    '003': 'rabbit'
+  };
+
+  print(un_pw);        // output: {001: russell, 002: tony, 003: rabbit}
+  print(un_pw['002']); // output: tony
+```
+
+### 3. Const
+The const variable must be initialized at compile time and can not be changed in runtime.
+```dart
+const pi = 3.1415926535897932;
+//PI = 3.1111111; // output: error
+print(pi); // output: 3.141592653589793
+```
+### 4. Final
+```dart
+final MAX_VALUE = 255;
+print(MAX_VALUE);
+```
+Note:
+- Prefer const over final for declarations.
+- PREFER using const for constant-valued declarations.
+- Constant declarations are more hot-reload friendly and allow values to be used in other constant expressions.
+
 # Part III : Flutter
 
 
