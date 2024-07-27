@@ -1,4 +1,69 @@
 void main() {
+  List<String> userName = ['Russell', 'Tony', 'Rabbit'];
+
+  for (int i = 0; i < userName.length; i++) {
+    userName[i] == 'Rabbit' ? userName[i] = 'Vi Anh' : userName[i];
+
+    print(userName[i]);
+  }
+}
+
+/*
+// Assignment operators
+void main() {
+  var x = 5.0;
+
+  print(x += 3); // output: 8
+  print(x -= 3); // output: 5
+  print(x++); // output: 6
+  print(x--); // output: 5
+  print(x /= 2); // output: 2.5
+  print(x ~/ 2); // output: 1
+  print(x *= 2); // output 5
+  print(8 % 5); // output: 3
+}
+*/
+/*
+// Logical operators
+void main() {
+  var x = true;
+  var y = false;
+
+  print(x & y); // And => output: false
+  print(x | y); // Or => output: true
+  print(!x); // Not => output: false
+}
+*/
+/*
+// Comparision operators
+void main() {
+  var x = 5;
+  var y = 6;
+  print(x == y); // output: false
+  print(x != y); // output: true
+  print(x < y); // output: true
+  print(x > y); // output: false
+  print(x <= y); // output: true
+  print(x >= y); // output: false
+}
+*/
+/*
+// Arimethic operators
+void main() {
+  int x = 6;
+  int y = 4;
+
+  print(x + y); // output: 10
+  print(x - y); // output: 2
+  print(x * y); // output: 24
+  print(x / y); // output: 1.5
+  print(x ~/ y); // output: 1
+  print(x % y); // output: 2
+}
+*/
+/*
+// Collections 
+void main() {
   List<String> name = ['Russell', 'Tony', 'Rabbit'];
 
   print(name); // output: [Russell, Tony, Rabbit]
@@ -15,13 +80,14 @@ void main() {
 
   const pi = 3.1415926535897932;
   //PI = 3.1111111; // output: error
-  print(pi);
+  print(pi); // output: 3.141592653589793
 
   final MAX_VALUE = 255;
   print(MAX_VALUE);
 }
-
+*/
 /*
+// Basic variables
 void main(List<String> args) {
   String s = 'i am Russell';
   int i = 40;
