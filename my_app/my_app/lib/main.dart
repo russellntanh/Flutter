@@ -1,3 +1,29 @@
+// Function
+void main() {
+  // No argument
+  ShowLog();
+
+  // With argument
+  var sum = CalculateSum(5, 10);
+  print(sum);
+
+  // With default argument
+  var div = CalculateDiv(x: 6, y: 3);
+  print(div);
+}
+
+void ShowLog() {
+  print('This is sample log.');
+}
+
+int CalculateSum(int x, int y) => x + y;
+
+double? CalculateDiv({double x = 3.5, double y = 2.5}) {
+  if (x != 0) return y / x;
+}
+
+/*
+// Conditions
 void main() {
   List<String> userName = ['Russell', 'Tony', 'Rabbit'];
 
@@ -7,6 +33,7 @@ void main() {
     print(userName[i]);
   }
 }
+*/
 
 /*
 // Assignment operators
