@@ -237,7 +237,7 @@ double? CalculateDiv({double x = 3.5, double y = 2.5})
 ```
 ## Unit 5 - Class and OOP in Dart
 
-
+**Class**
 - Book(this.name, this.year) : constructor
 - Book(required this.name, required this.year) constructor
 - Book({ // constructor
@@ -294,6 +294,189 @@ void main() {
   print('Temperature in Fahrenheit: ${temp.toFahrenheit()}'); // Output: Temperature in Fahrenheit: 77.0
 }
 ```
+**OOP - Inheritance**
+- Allow a class can inherit properties and methods from other class by the **extend** keyword.
+```dart
+class Person {
+  String name;
+  int age;
+
+  // Constructor
+  Person(this.name, this.age);
+
+  // Method
+  void introduce() {
+    print('Hi, my name is $name and I am $age years old.');
+  }
+}
+
+class Employee extends Person {
+  String jobTitle;
+
+  Employee(String name, int age, this.jobTitle) : super(name, age);
+
+  void work() {
+    print('$name is working as a $jobTitle.');
+  }
+}
+
+void main() {
+  var employee = Employee('Bob', 25, 'Engineer');
+  employee.introduce(); // Output: Hi, my name is Bob and I am 25 years old.
+  employee.work(); // Output: Bob is working as an Engineer.
+}
+```
+
+**OOP - Encapsulation**
+- Encapsulation in Dart is achieved by using private members bt prefixing an identifier with an **underscore** (_)
+```dart
+class BankAccount {
+  String _accountNumber;
+  double _balance;
+
+  BankAccount(this._accountNumber, this._balance);
+
+  void deposit(double amount) {
+    _balance += amount;
+    print('Deposited: \$${amount}, New Balance: \$$_balance');
+  }
+
+  void withdraw(double amount) {
+    if (_balance >= amount) {
+      _balance -= amount;
+      print('Withdrew: \$${amount}, Remaining Balance: \$$_balance');
+    } else {
+      print('Insufficient funds');
+    }
+  }
+}
+
+void main() {
+  var account = BankAccount('123456', 1000.0);
+  account.deposit(500.0); // Output: Deposited: $500.0, New Balance: $1500.0
+  account.withdraw(200.0); // Output: Withdrew: $200.0, Remaining Balance: $1300.0
+  account._accountNumber; // error
+  account._balance; // error
+}
+```
+
+**OOP - Abstraction**
+- Abstract classes are classes that cannot be instantiated and are meant to be extended by other classes by **abstract** keyword.
+- In these examples, polymorphism allows the draw method and startEngine method to work with different types of shapes and vehicles, respectively.
+```dart
+abstract class Vehicle {
+  void startEngine();
+}
+
+class Car extends Vehicle {
+  @override
+  void startEngine() {
+    print('Car engine started');
+  }
+}
+
+class Motorcycle extends Vehicle {
+  @override
+  void startEngine() {
+    print('Motorcycle engine started');
+  }
+}
+
+void main() {
+  Vehicle myCar = Car();
+  Vehicle myMotorcycle = Motorcycle();
+  
+  myCar.startEngine(); // Output: Car engine started
+  myMotorcycle.startEngine(); // Output: Motorcycle engine started
+}
+```
+**OOP - Polymophism**
+- Polymorphism in Dart is primarily achieved through method **overriding** and **interface**
+- In below example, the makeSound method is overridden in the Dog and Cat classes, demonstrating polymorphism. The same method call produces different results based on the object type.
+```dart
+class Animal {
+  void makeSound() {
+    print('Animal makes a sound');
+  }
+}
+
+class Dog extends Animal {
+  @override
+  void makeSound() {
+    print('Dog barks');
+  }
+}
+
+class Cat extends Animal {
+  @override
+  void makeSound() {
+    print('Cat meows');
+  }
+}
+
+void main() {
+  Animal myDog = Dog();
+  Animal myCat = Cat();
+  
+  myDog.makeSound(); // Output: Dog barks
+  myCat.makeSound(); // Output: Cat meows
+}
+```
+
+- Dart does not have a special syntax for interfaces. Instead, all classes implicitly define an interface by using the **implements** keyword.
+```dart
+abstract class Shape {
+  void draw();
+}
+
+class Circle implements Shape {
+  @override
+  void draw() {
+    print('Drawing a Circle');
+  }
+}
+
+class Square implements Shape {
+  @override
+  void draw() {
+    print('Drawing a Square');
+  }
+}
+
+void main() {
+  Shape circle = Circle();
+  Shape square = Square();
+  
+  circle.draw(); // Output: Drawing a Circle
+  square.draw(); // Output: Drawing a Square
+}
+```
+
+**Other stuff: Mixin keyword**
+- Mixins are a way of reusing a class's code in multiple class hierarchies by using **mixin** keyword.
+```dart
+mixin Walk {
+  void walk() {
+    print('Walking');
+  }
+}
+
+mixin Run {
+  void run() {
+    print('Running');
+  }
+}
+
+class Person with Walk, Run {}
+
+void main() {
+  var person = Person();
+  person.walk(); // Output: Walking
+  person.run(); // Output: Running
+}
+
+```
+
 
 # Part III : Flutter
 
