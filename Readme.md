@@ -235,8 +235,65 @@ double? CalculateDiv({double x = 3.5, double y = 2.5})
   if (x != 0) return y / x;
 }
 ```
-## Unit 5 - Class
+## Unit 5 - Class and OOP in Dart
 
+
+- Book(this.name, this.year) : constructor
+- Book(required this.name, required this.year) constructor
+- Book({ // constructor
+	required this.name, 
+	required this.year
+  }) 
+
+```dart 
+// Create a class in lib folder
+class Person {
+  String name;
+  int age;
+
+  Person(this.name, this.age);
+
+  void intro() {
+    print('Hello, my name is $name and I am $age years old.');
+  }
+}
+
+// Create an instance in main
+import 'Person.dart';
+
+void main() {
+  var person = Person('Russell', 40);
+
+  person.intro();
+}
+
+```
+- Keyword late : 
+Declare without initialization in the class. It can be initialized later in the function.
+ This is particularly useful when you want to defer the initialization of a variable until it is actually needed, allowing for more flexible and efficient coding.
+```dart
+class Temparature{
+   late double celcius;
+   
+   void setTemparature(double temparature)
+   {
+     celcius = temparature;
+   }
+   
+   double toFahrenheit(){
+	 return celsius * 9 / 5 + 32;
+   }
+}
+
+import 'package:my_app/Temparature.dart';
+
+void main() {
+  var temp = Temperature();
+  temp.setTemperature(25);
+  print('Temparature in Celcius is $temp.Celcius');
+  print('Temperature in Fahrenheit: ${temp.toFahrenheit()}'); // Output: Temperature in Fahrenheit: 77.0
+}
+```
 
 # Part III : Flutter
 

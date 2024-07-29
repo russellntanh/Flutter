@@ -1,3 +1,21 @@
+import 'package:my_app/Temparature.dart';
+
+import 'Person.dart';
+
+void main() {
+  // create instance of Person
+  var person = Person('Russell', 40);
+  person.intro();
+
+  // create instance of Temparator
+  var conversion = Temparature();
+  conversion.setTemparature(25);
+  conversion.ToFahrenheit();
+  conversion.showCelcius();
+  print('Temperature in Fahrenheit: ${conversion.ToFahrenheit()}');
+}
+
+/*
 // Function
 void main() {
   // No argument
@@ -21,7 +39,7 @@ int CalculateSum(int x, int y) => x + y;
 double? CalculateDiv({double x = 3.5, double y = 2.5}) {
   if (x != 0) return y / x;
 }
-
+*/
 /*
 // Conditions
 void main() {
