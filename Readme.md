@@ -452,6 +452,50 @@ void main() {
 }
 ```
 
+**Setter and Getter**
+- Getters and setters in Dart are special methods that provide read and write access to an object's properties. 
+They allow you to control how a particular property is accessed by **get** or modified **set**
+```dart
+class Rectangle {
+  late int _width;
+  late int _length;
+
+  int get GetWidth => _width;
+  int get GetLength => _length;
+
+  set SetLength(int value) {
+    if (value >= 0) {
+      _length = value;
+    } else {
+      print('Not a valid value');
+    }
+  }
+
+  set SetWidth(int value) {
+    if (value >= 0) {
+      _length = value;
+    } else {
+      print('Not a valid value');
+    }
+  }
+
+  Rectangle(this._width, this._length);
+}
+
+
+void main() {
+  var rec = Rectangle(200, 100);
+  print(rec.GetLength); // get
+  print(rec.GetWidth);  // get
+
+  rec.SetLength = 400;  // set
+  rec.SetWidth = 300;   // set
+
+  print(rec.GetLength);
+  print(rec.GetWidth);
+}
+```
+
 **Other stuff: Mixin keyword**
 - Mixins are a way of reusing a class's code in multiple class hierarchies by using **mixin** keyword.
 ```dart

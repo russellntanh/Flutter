@@ -1,9 +1,25 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:my_app/BankAccount.dart';
 import 'package:my_app/Employee.dart';
 import 'package:my_app/Temparature.dart';
 import 'package:my_app/Vehicle.dart';
 import 'Person.dart';
+import 'package:my_app/Rectangle.dart';
 
+void main() {
+  var rec = Rectangle(200, 100);
+  print(rec.GetLength);
+  print(rec.GetWidth);
+
+  rec.SetLength = 400;
+  rec.SetWidth = 300;
+
+  print(rec.GetLength);
+  print(rec.GetWidth);
+}
+/*
 void main() {
   Vehicle car = Car();
   Vehicle motobike = Motorbike();
@@ -11,7 +27,7 @@ void main() {
   car.startEngine();
   motobike.startEngine();
 }
-
+*/
 /*
 void main() {
   var bankAccount = BankAccount('Russell', 1000);
