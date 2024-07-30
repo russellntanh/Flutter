@@ -1,20 +1,32 @@
+import 'package:my_app/BankAccount.dart';
+import 'package:my_app/Employee.dart';
 import 'package:my_app/Temparature.dart';
-
+import 'package:my_app/Vehicle.dart';
 import 'Person.dart';
 
 void main() {
-  // create instance of Person
-  var person = Person('Russell', 40);
-  person.intro();
+  Vehicle car = Car();
+  Vehicle motobike = Motorbike();
 
-  // create instance of Temparator
-  var conversion = Temparature();
-  conversion.setTemparature(25);
-  conversion.ToFahrenheit();
-  conversion.showCelcius();
-  print('Temperature in Fahrenheit: ${conversion.ToFahrenheit()}');
+  car.startEngine();
+  motobike.startEngine();
 }
 
+/*
+void main() {
+  var bankAccount = BankAccount('Russell', 1000);
+  bankAccount.deposit(500);
+  bankAccount.withdraw(250);
+}
+*/
+/*
+void main() {
+  // create instance of Person
+  var employee = Employee('Russell', 40, 'SW engineer');
+  employee.intro(); // Hello, my name is Russell and I am 40 years old.
+  employee.work(); // Russell is working as a SW engineer at this company.
+}
+*/
 /*
 // Function
 void main() {
