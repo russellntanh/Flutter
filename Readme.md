@@ -521,9 +521,132 @@ void main() {
 
 ```
 
-
 # Part III : Flutter
+## Unit 6 - Widget 
 
+### Theory
+- To understand and to practice some important Widgets in flutter
 
+#### Text
+- To display a certain content in a type of text on the screen.
+```dart
+void main() {
+  runApp(
+    const Text(
+      "Hello Flutter",
+      style: TextStyle(fontSize: 30),
+      selectionColor: Colors.amber,
+      textDirection: TextDirection.ltr,
+    ),
+  );
+}
+```
 
+#### Center
+- To center allign all elements.
 
+```dart
+// Center the text
+void main() {
+  runApp(
+    const Center(
+      child: Text(
+        "This is my first Flutter App",
+        style: TextStyle(
+          fontSize: 30,
+          backgroundColor: Colors.amberAccent,
+        ),
+        textDirection: TextDirection.ltr,
+      ),
+    ),
+  );
+}
+```
+
+#### Column
+- To contain the elements(children) which allign in a vertical direction
+- Using "mainAxisAlignment"
+```dart
+// Show 3 texts in 01 column
+Column{
+	children: [
+		Text{'Hello1'},
+		Text{'Hello2'},
+		Text{'Hello3'},
+	],
+},
+```
+#### Row
+- To contain the elements(children) which allign in a horizontal direction
+```dart
+// Show 3 texts in 01 row
+Row{
+	children: [
+		Text{},
+		Text{},
+		Text{},
+	],
+},
+```
+
+#### Stack
+- To arrange the elements which be overlapped
+```dart
+Stack{
+	children: [
+		Positioned {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+			child: Container {
+				color: Color.Green,
+			},
+		},
+		Positioned {
+			top:0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+			child: Container {
+				color: Color.Red,
+			},
+		},
+	],
+},
+```
+
+#### Container
+- To create a box
+
+```dart
+Container{
+	width: 100,
+	height:100,
+	decoration: BoxDecoration{
+		color:
+		border:
+		borderRadius: BorderRadius.circular(100),
+	},
+},
+```
+
+#### SizedBox
+- To create the space or distance between two elments
+```dart
+Column {
+	children: [
+		
+		Text{},
+		
+		SizedBox{height: 30}, 
+		
+		Text{},
+	
+	],
+},
+```
+
+### Practice
+
+## Flutter - Unit 2: A
