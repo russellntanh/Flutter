@@ -608,3 +608,130 @@ class MyApp extends StatelessWidget {
 }
 ```
 ## Flutter - Unit 2: Build a ToDoList app
+
+### ListView
+- We can use ListView.builder with existing List to create the widge dynamically.
+```dart
+// main application
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'boxContainer.dart';
+import 'circleContainer.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  final List _list = [
+    'item 1',
+    'item 2',
+    'item 3',
+    'item 4',
+    'item 5',
+    'item 6',
+    'item 7',
+    'item 8',
+    'item 9',
+    'item 10',
+  ];
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+                child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CircleContainer(
+                  color: Colors.red,
+                ),
+                CircleContainer(color: Colors.yellow),
+                CircleContainer(color: Colors.green),
+                CircleContainer(color: Colors.purple),
+                CircleContainer(color: Colors.orange),
+                CircleContainer(color: Colors.cyan),
+                CircleContainer(color: Colors.amber),
+                CircleContainer(color: Colors.pink),
+              ],
+            )),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _list.length,
+                itemBuilder: (context, index) {
+                  return BoxContainer(child: _list[index]);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+##### Rectangle with input list data
+```dart
+// How to call extracted method with input parameter
+import "package:flutter/material.dart";
+
+class BoxContainer extends StatelessWidget {
+  final String child;
+
+  const BoxContainer({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        height: 100,
+        color: Colors.amber,
+        child: Center(
+          child: Text(
+            child,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+##### Circle with input color param
+```dart
+import "package:flutter/material.dart";
+
+class CircleContainer extends StatelessWidget {
+  final Color color;
+  const CircleContainer({required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+}
+
+```
+### GridView
+
+
+### PageView
+
+
