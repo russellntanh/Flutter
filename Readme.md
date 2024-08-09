@@ -608,8 +608,10 @@ class MyApp extends StatelessWidget {
 }
 ```
 ## Flutter - Unit 2: Build a ToDoList app
+#### Practice ListView widget
+![image](https://github.com/user-attachments/assets/54075648-cbc7-4c58-8a4f-761caa784172)
 
-### ListView
+#### Sample ListView code
 - We can use ListView.builder with existing List to create the widge dynamically.
 ```dart
 // main application
@@ -679,7 +681,7 @@ class MyApp extends StatelessWidget {
 
 ```
 
-##### Rectangle with input list data
+#### Rectangle with input list data
 ```dart
 // How to call extracted method with input parameter
 import "package:flutter/material.dart";
@@ -729,9 +731,12 @@ class CircleContainer extends StatelessWidget {
 }
 
 ```
-### GridView
+
+### ToDoList Figma desing
+![image](https://github.com/user-attachments/assets/4c923040-d5f0-477d-9a4d-7b9e3c1d21d4)
 
 
-### PageView
+
+
 
 
