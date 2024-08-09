@@ -548,7 +548,10 @@ void main() {
 #### SizedBox
 - To create the space or distance between two elments
 
-### Practice
+### Practice for FirstApp design
+![image](https://github.com/user-attachments/assets/e2b2a4db-c111-47d5-80ba-49fa194b3725)
+
+
 ```dart
 import 'package:flutter/material.dart';
 
