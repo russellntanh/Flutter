@@ -1,11 +1,9 @@
-import 'dart:js_interop';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import 'widget/ticketWidget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,23 +13,79 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        // App Header
         appBar: AppBar(
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.blue,
           title: const Center(
             child: Text(
               'ToDoList',
-              style: TextStyle(fontSize: 40),
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
-        body: Container(),
+
+        // App Body: main content
+        body: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          children: [
+            taskWidget(taskName: "Task 1"),
+            taskWidget(taskName: "Task 2"),
+          ],
+        ),
+
+        // App Footer
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add, size: 40),
+          onPressed: () {
+            _showModalBottom(context);
+          },
+          child: Icon(Icons.add),
         ),
       ),
     );
+  }
+
+  void _showModalBottom(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) => Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                height: 200,
+                child: Column(
+                  children: [
+                    // Place for user to input text
+                    TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Input your task title",
+                      ),
+                    ),
+
+                    // Just blank box to create gab between input text and button
+                    SizedBox(height: 30),
+
+                    // Button to add the new task
+                    ElevatedButton(
+                        onPressed: () {},
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: Center(
+                              child: Text(
+                            'Add Task',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                        ))
+                  ],
+                ),
+              ),
+            ));
   }
 }
