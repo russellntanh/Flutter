@@ -1,18 +1,50 @@
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:todolist/model/task_model.dart';
 
-import 'widget/ticketWidget.dart';
+import 'widget/bottom_widget.dart';
+import 'widget/task_widget.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<TaskModel> taskList = [];
+
+  // Insert new task to the taskList
+  void _handleAddTask(String name) {
+    final newTask = TaskModel(id: DateTime.now().toString(), name: name);
+    setState(() {
+      // Check duplicated task name
+      for (int i = 0; i < taskList.length; i++) {
+        if (name == taskList[i].name) return;
+      }
+
+      // Insert to taskList
+      taskList.add(newTask);
+    });
+  }
+
+  // Delete a selected task
+  void _handleDeleteTask(String id) {
+    setState(() {
+      taskList.removeWhere((item) => item.id == id);
+    });
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         // App Header
         appBar: AppBar(
@@ -29,63 +61,37 @@ class MyApp extends StatelessWidget {
           ),
         ),
 
-        // App Body: main content
-        body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          children: [
-            taskWidget(taskName: "Task 1"),
-            taskWidget(taskName: "Task 2"),
-          ],
+        // App Body: main content by method 1 (More efficient)
+        body: ListView.builder(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          itemCount: taskList.length,
+          itemBuilder: (context, index) => TaskWidget(
+            task: taskList[index],
+            deleteTask: _handleDeleteTask,
+          ),
         ),
+
+        // App Body: main content by method 2
+        // body: SingleChildScrollView(
+        //   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        //   child: Column(
+        //     children: taskList.map((item) => TaskWidget(task: item)).toList(),
+        //   ),
+        // ),
 
         // App Footer
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _showModalBottom(context);
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return bottom_widget(addTask: _handleAddTask);
+              },
+            );
           },
           child: Icon(Icons.add),
         ),
       ),
     );
-  }
-
-  void _showModalBottom(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (ctx) => Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                padding: EdgeInsets.all(20),
-                width: double.infinity,
-                height: 200,
-                child: Column(
-                  children: [
-                    // Place for user to input text
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Input your task title",
-                      ),
-                    ),
-
-                    // Just blank box to create gab between input text and button
-                    SizedBox(height: 30),
-
-                    // Button to add the new task
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: Center(
-                              child: Text(
-                            'Add Task',
-                            style: TextStyle(fontSize: 18),
-                          )),
-                        ))
-                  ],
-                ),
-              ),
-            ));
   }
 }

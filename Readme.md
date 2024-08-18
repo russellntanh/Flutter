@@ -741,23 +741,57 @@ class CircleContainer extends StatelessWidget {
 - Padding : add the space to the content inside.
 - Margin : add the space outside.
 
+#### main.dart
 ```dart
-// This code how to create the ToDoList
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:todolist/model/task_model.dart';
 
-import 'widget/ticketWidget.dart';
+import 'widget/bottom_widget.dart';
+import 'widget/task_widget.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<TaskModel> taskList = [];
+
+  // Insert new task to the taskList
+  void _handleAddTask(String name) {
+    final newTask = TaskModel(id: DateTime.now().toString(), name: name);
+    setState(() {
+      // Check duplicated task name
+      for (int i = 0; i < taskList.length; i++) {
+        if (name == taskList[i].name) return;
+      }
+
+      // Insert to taskList
+      taskList.add(newTask);
+
+      Navigation
+    });
+  }
+
+  // Delete a selected task
+  void _handleDeleteTask(String id) {
+    setState(() {
+      taskList.removeWhere((item) => item.id == id);
+    });
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         // App Header
         appBar: AppBar(
@@ -774,68 +808,199 @@ class MyApp extends StatelessWidget {
           ),
         ),
 
-        // App Body: main content
-        body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          children: [
-            taskWidget(taskName: "Task 1"),
-            taskWidget(taskName: "Task 2"),
-          ],
+        // App Body: main content by method 1 (More efficient)
+        body: ListView.builder(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          itemCount: taskList.length,
+          itemBuilder: (context, index) => TaskWidget(
+            task: taskList[index],
+            deleteTask: _handleDeleteTask,
+          ),
         ),
+
+        // App Body: main content by method 2
+        // body: SingleChildScrollView(
+        //   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        //   child: Column(
+        //     children: taskList.map((item) => TaskWidget(task: item)).toList(),
+        //   ),
+        // ),
 
         // App Footer
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _showModalBottom(context);
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return bottom_widget(addTask: _handleAddTask);
+              },
+            );
           },
           child: Icon(Icons.add),
         ),
       ),
     );
   }
+}
+```
 
-  void _showModalBottom(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (ctx) => Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                padding: EdgeInsets.all(20),
-                width: double.infinity,
-                height: 200,
-                child: Column(
-                  children: [
-                    // Place for user to input text
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Input your task title",
-                      ),
-                    ),
+#### bottom_widget.dart
+```dart
+import 'package:flutter/material.dart';
 
-                    // Just blank box to create gab between input text and button
-                    SizedBox(height: 30),
+class bottom_widget extends StatelessWidget {
+  bottom_widget({
+    super.key,
+    required this.addTask,
+  });
 
-                    // Button to add the new task
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: Center(
-                              child: Text(
-                            'Add Task',
-                            style: TextStyle(fontSize: 18),
-                          )),
-                        ))
-                  ],
-                ),
+  final Function addTask;
+
+  String inputTask = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Container(
+        padding: EdgeInsets.all(20),
+        width: double.infinity,
+        height: 200,
+        child: Column(
+          children: [
+            // Place for user to input text
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Input your task title",
               ),
-            ));
+              // save the content which user has typed to "inputText" variable
+              onChanged: (value) => inputTask = value,
+            ),
+
+            // Just blank box to create gab between input text and button
+            SizedBox(height: 30),
+
+            // Add Task button
+            ElevatedButton(
+                onPressed: () {
+                  if (inputTask.isEmpty) {
+                    return;
+                  }
+                  addTask(inputTask);
+                  print(inputTask);
+                },
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: Center(
+                      child: Text(
+                    'Add Task',
+                    style: TextStyle(fontSize: 18),
+                  )),
+                ))
+          ],
+        ),
+      ),
+    );
   }
 }
-
 ```
+
+#### task_widget.dart
+```dart
+import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:todolist/model/task_model.dart';
+
+class TaskWidget extends StatelessWidget {
+  TaskWidget({
+    super.key,
+    required this.task,
+    required this.deleteTask,
+  });
+
+  TaskModel task;
+  final Function deleteTask;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 70,
+      margin: EdgeInsets.only(bottom: 20),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 224, 221, 221),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Display task title
+            Text(
+              task.name,
+              style: TextStyle(
+                color: const Color(0xff4B4B4B),
+                fontSize: 20,
+              ),
+            ),
+
+            // Delete a task
+            InkWell(
+              onTap: () async {
+                if (await confirm(context)) {
+                  deleteTask(task.id);
+                  print('Task is deleted');
+                }
+                return;
+              },
+
+              // Display delete icon
+              child: Icon(
+                Icons.delete,
+                color: Color(0xff4B4B4B),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+#### task_model.dart
+```dart
+class TaskModel {
+  final String id;
+  final String name;
+
+  TaskModel({required this.id, required this.name});
+}
+```
+
+#### Notes
+To add confirm_dialog : 
+ + Step 1: Ctrl + P
+ + Step 2: Add dependency
+ + Step 3: Type "config_dialog"
+ + Step 4: Add async/await confirm.
+
+```dart 
+// Delete a task
+InkWell(
+  onTap: () async {
+	if (await confirm(context)) {
+	  deleteTask(task.id);
+	  print('Task is deleted');
+	}
+	return;
+  },
+```
+
+
 
 
 
