@@ -7,10 +7,12 @@ class TaskWidget extends StatelessWidget {
     super.key,
     required this.task,
     required this.deleteTask,
+    required this.index,
   });
 
   TaskModel task;
   final Function deleteTask;
+  int index;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class TaskWidget extends StatelessWidget {
       height: 70,
       margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 224, 221, 221),
+        color: (index % 2 == 0)
+            ? Color.fromARGB(255, 218, 218, 218)
+            : Color.fromARGB(255, 207, 254, 245),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(

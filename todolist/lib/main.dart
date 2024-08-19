@@ -66,6 +66,7 @@ class _MyAppState extends State<MyApp> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           itemCount: taskList.length,
           itemBuilder: (context, index) => TaskWidget(
+            index: index,
             task: taskList[index],
             deleteTask: _handleDeleteTask,
           ),
