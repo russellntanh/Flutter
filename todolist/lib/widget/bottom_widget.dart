@@ -10,12 +10,14 @@ class bottom_widget extends StatelessWidget {
 
   TextEditingController controller = TextEditingController();
 
-  void _handleOnClick() {
+  void _handleOnClick(BuildContext context) {
     final name = controller.text;
     if (name.isEmpty) {
       return;
     }
     addTask(name);
+
+    Navigator.pop(context);
   }
 
   @override
@@ -43,7 +45,7 @@ class bottom_widget extends StatelessWidget {
 
             // Add Task button
             ElevatedButton(
-                onPressed: () => _handleOnClick(),
+                onPressed: () => _handleOnClick(context),
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
