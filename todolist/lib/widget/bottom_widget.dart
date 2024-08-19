@@ -8,7 +8,15 @@ class bottom_widget extends StatelessWidget {
 
   final Function addTask;
 
-  String inputTask = '';
+  TextEditingController controller = TextEditingController();
+
+  void _handleOnClick() {
+    final name = controller.text;
+    if (name.isEmpty) {
+      return;
+    }
+    addTask(name);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class bottom_widget extends StatelessWidget {
                 labelText: "Input your task title",
               ),
               // save the content which user has typed to "inputText" variable
-              onChanged: (value) => inputTask = value,
+              controller: controller,
             ),
 
             // Just blank box to create gab between input text and button
@@ -35,13 +43,7 @@ class bottom_widget extends StatelessWidget {
 
             // Add Task button
             ElevatedButton(
-                onPressed: () {
-                  if (inputTask.isEmpty) {
-                    return;
-                  }
-                  addTask(inputTask);
-                  print(inputTask);
-                },
+                onPressed: () => _handleOnClick(),
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
