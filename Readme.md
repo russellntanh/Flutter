@@ -1092,8 +1092,44 @@ void main() {
 
 ## Navigation 
 
+### Basic Navigation
+This is use in case of you have only several pages by using keyword
+```dart
+	ElevatedButton(
+	  onPressed: () {
+		Navigator.push(
+			context,
+			MaterialPageRoute(
+			  builder: (context) => FirstPage(),
+			));
+	  },
+```
+
+### Advanced Navigation
+This is used in case of you have a lot of pages by using keyword "route"
+
+```dart
+// declare the name of each page in main function
+Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: FirstPage(),
+      routes: {
+        '/firstpage': (context) => FirstPage(),
+        '/secondpage': (context) => SecondPage(),
+      },
+    );
+  }
+```
 
 
+```dart
+// call at the each page
+ElevatedButton(
+	onPressed: () {
+	  Navigator.pushNamed(context, '/secondpage');
+	},
+```
 
 
 
