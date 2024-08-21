@@ -40,7 +40,7 @@ Press "flutter doctor" to check all below:
 
 7. Restart PC if it does not work
 
-===============================================================
+---
 # Part II : Dart Fundamentals
 ## Unit 1 - Variable declaration basic
 ### 1. Bien co ban trong Dart
@@ -520,8 +520,8 @@ void main() {
 }
 
 ```
-
-# Part III : Flutter
+---
+# Part III : Flutter Fundamentals
 ## Unit 6 - Widget 
 
 ### Theory
@@ -907,6 +907,8 @@ class bottom_widget extends StatelessWidget {
 }
 ```
 
+###
+
 #### task_widget.dart
 ```dart
 import 'package:confirm_dialog/confirm_dialog.dart';
@@ -999,6 +1001,97 @@ InkWell(
 	return;
   },
 ```
+---
+# Part IV: Advanced Flutter Parts
+
+## Statefull and Stateless 
+### Stateless Widget
+A Stateless Widget is a widget that does not have any internal state. This means that once it is built, it will not change unless its parent widget rebuilds it with new data. Stateless widgets are immutable, meaning their properties cannot change—once created, their configuration is fixed.
+
+**Use Cases**:
+
+- UI elements that do not need to update dynamically.
+- Displaying static content such as text, icons, and images.
+- Widgets that don't depend on user interaction for their behavior.
+```dart
+import 'package:flutter/material.dart';
+
+class MyStatelessWidget extends StatelessWidget {
+  final String title;
+
+  MyStatelessWidget({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(title);
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: MyStatelessWidget(title: "Hello, World!"),
+      ),
+    ),
+  ));
+}
+```
+
+#### Statefull Widget
+A Stateful Widget is a widget that has a mutable state. This means that it can change its appearance in response to user interaction or other factors over time. Stateful widgets consist of two classes: the widget itself and the state object. The state object holds the mutable state for the widget and can be updated using the setState method, which triggers a rebuild of the widget.
+
+**Use Cases**:
+
+- Widgets that need to update dynamically, such as forms, buttons, or interactive elements.
+- UI elements that need to change based on user input or events.
+- Managing local state that affects the widget's appearance or behavior.
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String title = "Hello, World!";
+
+  void _changeTitle() {
+    setState(() {
+      title = "Hello, Flutter!";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(title),
+        ElevatedButton(
+          onPressed: _changeTitle,
+          child: Text("Change Title"),
+        ),
+      ],
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: MyStatefulWidget(),
+      ),
+    ),
+  ));
+}
+```
+
+## Navigation 
+
 
 
 
